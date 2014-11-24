@@ -1,0 +1,28 @@
+{% set user_defaults = {
+    'profile': 'julia',
+    'port': '8080',
+    'trust_xheaders': True,
+    'open_browser': False,
+    'ip': 'localhost'
+} %}
+
+{% set ipython_notebook = salt['grains.filter_by']({
+    'x86_64': {
+        'users': {
+            'dhc-user': { }
+        }
+    },
+    'x86': {
+        'users': {
+            'dhc-user': { }
+        }
+    }
+}, merge=salt['pillar.get']('ipython-notebook:lookup'), grain='cpuarch', default='x86_64') %}
+
+{% for param, value in user_defaults.iteritems() %}
+    {% for user, params in ipython_notebook.users.iteritems() %}
+        {% if !ipython_notebook.users[user][param] %}
+            {% set ipython_notebook.users[user][param] = value %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
