@@ -1,6 +1,5 @@
 c = get_config()
 c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.certfile = u'{{ cert }}'
 c.NotebookApp.ip = '{{ ip }}'
 c.NotebookApp.port = {{ port }}
 c.NotebookApp.open_browser = False
