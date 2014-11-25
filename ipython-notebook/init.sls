@@ -43,7 +43,7 @@ include:
     - user: {{ user }}
     - group: {{ config.group }}
 
-/etc/init/ipython.{{ user }}:
+/etc/init/ipython.{{ user }}.conf:
   file.managed:
     - user: root
     - group: root
