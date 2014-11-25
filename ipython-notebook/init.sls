@@ -57,6 +57,8 @@ include:
     - mode: 0755
 
 ipython.{{ user }}:
-  service.start
+  service:
+    - running
+    - enable: True
 
 {% endfor %}
