@@ -61,5 +61,8 @@ ipython.{{ user }}:
   service:
     - running
     - enable: True
+    - reload: True
+    - watch:
+      - file: /home/{{ user }}/.ipython/profile_{{ config.profile }}/ipython.config.py
 
 {% endfor %}
