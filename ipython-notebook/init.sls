@@ -33,6 +33,7 @@ include:
     - context:
       ip: {{ config.host }}
       port: {{ config.port }}
+      hashed_pass: {{ config.hashed_pass }}
     - source: salt://ipython-notebook/ipython_config.py
     - mode: 0755
     - require: 
