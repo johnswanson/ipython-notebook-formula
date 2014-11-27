@@ -63,6 +63,6 @@ ipython.{{ user }}:
     - enable: True
     - reload: True
     - watch:
-      - file: /home/{{ user }}/.ipython/profile_{{ config.profile }}/ipython.config.py
+      - file: /home/{{ user }}/.ipython/profile_{{ config.profile }}/ipython_config.py
 
 {% endfor %}
