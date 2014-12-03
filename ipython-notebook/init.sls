@@ -5,28 +5,14 @@ include:
 
 {% for user, config in ip.users.iteritems() %}
 
-/home/{{ user }}/.ipython:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ config.group }}
-    - mode: 0755
-
 /home/{{ user }}/notebooks:
   file.directory:
     - user: {{ user }}
     - group: {{ config.group }}
     - mode: 0755
 
-/home/{{ user }}/.ipython/profile_{{ config.profile }}:
-  file.directory:
-    - user: {{ user }}
-    - group: {{ config.group }}
-    - mode: 0755
-    - require:
-      - file: /home/{{ user }}/.ipython
-
-/home/{{ user }}/.ipython/profile_{{ config.profile }}/ipython_config.py:
-  file.managed:
+/home/{{ user }}/.ipython/profile_{{ config.profile }}/ipython_notebook_config.py:
+  file.append:
     - user: {{ user }}
     - group: {{ config.group }}
     - template: jinja
@@ -36,8 +22,7 @@ include:
       hashed_pass: {{ config.hashed_pass }}
     - source: salt://ipython-notebook/ipython_config.py
     - mode: 0755
-    - require: 
-      - file: /home/{{ user }}/.ipython/profile_{{ config.profile }}
+    - makedirs: True
 
 /home/{{ user }}/anaconda/bin/conda update -y ipython:
   cmd.run:
