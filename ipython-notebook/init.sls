@@ -3,7 +3,7 @@
 include:
   - anaconda
 
-{% for user, config in ip.users.iteritems() %}
+{%- for user, config in ip.users.iteritems() %}
 
 /home/{{ user }}/notebooks:
   file.directory:
